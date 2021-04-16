@@ -5,12 +5,18 @@ const find = () => {
     return db('projects')
 };
 
+function getById(project_id) {
+    return db('projects')
+      .where({ project_id })
+      .first();
+  }
+
 const makeNew = (newProject) => {
     return db('projects')
         .insert(newProject)
-            .then(proj => {
-                return proj[0];
-            })
+        .then(ids => {
+            return getById(ids[0])
+        })
 };
 
 module.exports = {
