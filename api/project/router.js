@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     // return the new project
     Projects.makeNew(req.body)
         .then(project => {
-            if(project.project_completed===1){
+            if(project.project_completed===1){ //shape data so booleans appear properly
                 res.status(201).json({
                     project_id: project.project_id,
                     project_name: project.project_name,

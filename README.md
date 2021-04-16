@@ -113,6 +113,10 @@ After finishing your required elements, you can push your work further. These go
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between Relational Databases and SQL.
+--Relational databases are databases made up of tables that are connected to each other via primary keys and foreign keys.  SQL is a query language that is used to manipulate data in databases
 2. Why do tables need a Primary Key?
+--Tables need a primary key in order to uniquely identify each record in the table.  Primary keys are also used if another table in the database needs to refer to this table (the other table will use a foreign key matching this table's primary key)
 3. What is the name given to a table column that references the Primary Key on another table?
+--The table column would be called a foreign key
 4. What do we need in order to have a _many to many_ relationship between two tables?
+--An appointment table (or junction table), which would hold two foreign keys (being the primary keys of each of the respective two tables that we want to connect)

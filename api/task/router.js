@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     // return the new task
     Tasks.makeNew(req.body)
         .then(task => {
-            if(task.task_completed===1){
+            if(task.task_completed===1){ //shape data so booleans appear properly
                 res.status(201).json({
                     task_id: task.task_id,
                     task_notes: task.task_notes,

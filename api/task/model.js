@@ -5,7 +5,7 @@ const find = async () => {
     const rows = await db('tasks')
         .join('projects', 'tasks.project_id', 'projects.project_id')
         .select('*')
-    rows.forEach(row => {
+    rows.forEach(row => { //shape data so booleans appear properly
         if(row.task_completed === 1){
             row.task_completed = true;
         }else{

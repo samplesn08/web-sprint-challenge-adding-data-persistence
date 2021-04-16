@@ -4,7 +4,7 @@ const db = require('../../data/dbConfig');
 const find = async () => {
     const rows = await db('projects')
     rows.forEach(row => {
-        if(row.project_completed === 1){
+        if(row.project_completed === 1){ //shape data so booleans appear properly
             row.project_completed = true;
         }else{
             row.project_completed = false;
