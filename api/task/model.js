@@ -1,18 +1,32 @@
 // build your `Task` model here
 const db = require('../../data/dbConfig');
 
-const find = () => {
-    return db('tasks')
+const find = async () => {
+    const rows = await db('tasks')
         .join('projects', 'tasks.project_id', 'projects.project_id')
         .select('*')
+    rows.forEach(row => {
+        if(row.task_completed === 1){
+            row.task_completed = true;
+        }else{
+            row.task_completed = false;
+        }
+    })
+    return rows;
 };
+
+function getById(task_id) {
+    return db('tasks')
+      .where({ task_id })
+      .first();
+  }
 
 const makeNew = (newTask) => {
     return db('tasks')
         .insert(newTask)
-            .then(task => {
-                return task[0];
-            })
+        .then(ids => {
+            return getById(ids[0])
+        })
 };
 
 module.exports = {
