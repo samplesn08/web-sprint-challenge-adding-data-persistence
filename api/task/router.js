@@ -19,7 +19,23 @@ router.post('/', (req, res) => {
     // return the new task
     Tasks.makeNew(req.body)
         .then(task => {
-            res.status(201).json(task)
+            if(task.task_completed===1){
+                res.status(201).json({
+                    task_id: task.task_id,
+                    task_notes: task.task_notes,
+                    task_description: task.task_description,
+                    task_completed: true,
+                    project_id: task.project_id
+                })
+            }else{
+                res.status(201).json({
+                    task_id: task.task_id,
+                    task_notes: task.task_notes,
+                    task_description: task.task_description,
+                    task_completed: false,
+                    project_id: task.project_id
+                })
+            }
         })
         .catch(err => {
             res.status(500).json({ message: err.message })

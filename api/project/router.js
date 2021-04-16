@@ -19,7 +19,21 @@ router.post('/', (req, res) => {
     // return the new project
     Projects.makeNew(req.body)
         .then(project => {
-            res.status(201).json(project)
+            if(project.project_completed===1){
+                res.status(201).json({
+                    project_id: project.project_id,
+                    project_name: project.project_name,
+                    project_description: project.project_description,
+                    project_completed: true
+                })
+            }else{
+                res.status(201).json({
+                    project_id: project.project_id,
+                    project_name: project.project_name,
+                    project_description: project.project_description,
+                    project_completed: false
+                })
+            }
         })
         .catch(err => {
             res.status(500).json({ message: err.message })
